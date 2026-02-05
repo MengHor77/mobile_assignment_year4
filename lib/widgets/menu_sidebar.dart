@@ -5,7 +5,7 @@ import 'package:mobile_year4/screens/login/login_view.dart';
 import 'package:mobile_year4/screens/about/about_us_view.dart';
 import 'package:mobile_year4/screens/order_list/order_list_view.dart';
 import 'package:mobile_year4/screens/contact_us/contact_us_view.dart';
-import 'package:mobile_year4/screens/book_fdf_free/book_pdf_view.dart';
+import 'package:mobile_year4/screens/book_pdf_free/book_pdf_view.dart';
 import 'package:mobile_year4/screens/special_offer/special_offers_view.dart';
 import 'package:mobile_year4/screens/best_selling_view/best_selling_view.dart';
 
