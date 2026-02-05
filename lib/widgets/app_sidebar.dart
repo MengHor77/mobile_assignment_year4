@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_year4/screens/home_view.dart';
+import 'package:mobile_year4/screens/book_view.dart';
 import 'package:mobile_year4/screens/login_view.dart';
+import 'package:mobile_year4/screens/book_pdf_view.dart';
+import 'package:mobile_year4/screens/about_us_view.dart';
+import 'package:mobile_year4/screens/order_list_view.dart';
+import 'package:mobile_year4/screens/contact_us_view.dart';
+import 'package:mobile_year4/screens/best_selling_view.dart';
+import 'package:mobile_year4/screens/special_offers_view.dart';
 
 class AppSidebar extends StatelessWidget {
   final String currentRoute;
@@ -10,9 +18,9 @@ class AppSidebar extends StatelessWidget {
     return Drawer(
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       child: ListView(
+        // Changed from Column to ListView for the whole drawer
         padding: EdgeInsets.zero,
         children: [
-          // 1. Sidebar Header
           const UserAccountsDrawerHeader(
             accountName: Text('Nita Vann'),
             accountEmail: Text('account@example.com'),
@@ -23,16 +31,52 @@ class AppSidebar extends StatelessWidget {
             ),
           ),
 
-          // 2. Navigation Menu Items
-          _HoverableMenuItem(title: 'Home', icon: Icons.home, isActive: currentRoute == 'Home'),
-          _HoverableMenuItem(title: 'Books', icon: Icons.menu_book_rounded, isActive: currentRoute == 'Books'),
-          _HoverableMenuItem(title: 'Order List', icon: Icons.receipt_long_rounded, isActive: currentRoute == 'Order List'),
-          _HoverableMenuItem(title: 'Best Selling Books', icon: Icons.workspace_premium, isActive: currentRoute == 'Best Selling Books'),
-          _HoverableMenuItem(title: 'Book PDF Free', icon: Icons.picture_as_pdf_rounded, isActive: currentRoute == 'Book PDF Free'),
-          _HoverableMenuItem(title: 'Contact Us', icon: Icons.support_agent_rounded, isActive: currentRoute == 'Contact Us'),
-          _HoverableMenuItem(title: 'About Us', icon: Icons.import_contacts_rounded, isActive: currentRoute == 'About Us'),
+          // Menu Items
+          _buildMenuItem(context, Icons.home, 'Home', const HomeView()),
+          _buildMenuItem(
+            context,
+            Icons.menu_book_rounded,
+            'Books',
+            const BookView(),
+          ),
+          _buildMenuItem(
+            context,
+            Icons.receipt_long_rounded,
+            'Order List',
+            const OrderListView(),
+          ),
+          _buildMenuItem(
+            context,
+            Icons.workspace_premium,
+            'Best Selling',
+            const BestSellingView(),
+          ),
+          _buildMenuItem(
+            context,
+            Icons.picture_as_pdf_rounded,
+            'Book PDF Free',
+            const BookPdfView(),
+          ),
+          _buildMenuItem(
+            context,
+            Icons.local_offer_rounded,
+            'Special Offers',
+            const SpecialOffersView(),
+          ),
+          _buildMenuItem(
+            context,
+            Icons.support_agent_rounded,
+            'Contact Us',
+            const ContactUsView(),
+          ),
+          _buildMenuItem(
+            context,
+            Icons.info_outline_rounded,
+            'About Us',
+            const AboutUsView(),
+          ),
 
-          // 3. Logout Item (Standard ListTile)
+          // Logout Item (Now directly under the menu)
           ListTile(
             leading: const Icon(Icons.logout_rounded, color: Colors.red),
             title: const Text(
@@ -40,7 +84,6 @@ class AppSidebar extends StatelessWidget {
               style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              Navigator.pop(context);
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginView()),
@@ -48,71 +91,36 @@ class AppSidebar extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(height: 20), // Padding at the bottom
         ],
       ),
     );
   }
-}
 
-// --- Helper Widget to Handle Hover/Active States with If-Else ---
-class _HoverableMenuItem extends StatefulWidget {
-  final String title;
-  final IconData icon;
-  final bool isActive;
-
-  const _HoverableMenuItem({
-    required this.title,
-    required this.icon,
-    required this.isActive,
-  });
-
-  @override
-  State<_HoverableMenuItem> createState() => _HoverableMenuItemState();
-}
-
-class _HoverableMenuItemState extends State<_HoverableMenuItem> {
-  bool isHovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    // Variables to hold the colors determined by our If-Else logic
-    Color currentTileColor;
-    Color contentColor;
-
-    // Background Color Logic
-    if (widget.isActive) {
-      currentTileColor = Colors.blue;
-    } else if (isHovered) {
-      currentTileColor = Colors.green.withValues(alpha: 0.3);
-    } else {
-      currentTileColor = Colors.transparent;
-    }
-
-    // Icon and Text Color Logic
-    if (widget.isActive || isHovered) {
-      contentColor = Colors.white;
-    } else {
-      contentColor = Colors.blue;
-    }
-
-    return MouseRegion(
-      onEnter: (event) => setState(() => isHovered = true),
-      onExit: (event) => setState(() => isHovered = false),
-      child: ListTile(
-        tileColor: currentTileColor,
-        leading: Icon(widget.icon, color: contentColor),
-        title: Text(
-          widget.title,
-          style: TextStyle(
-            color: contentColor,
-            fontWeight: widget.isActive ? FontWeight.bold : FontWeight.normal,
-          ),
-        ),
-        onTap: () {
-          Navigator.pop(context);
-          // Future navigation logic goes here
-        },
+  Widget _buildMenuItem(
+    BuildContext context,
+    IconData icon,
+    String title,
+    Widget destination,
+  ) {
+    bool isActive = currentRoute == title;
+    return ListTile(
+      selected: isActive,
+      selectedTileColor: Colors.blue.withValues(alpha: 0.1),
+      leading: Icon(icon, color: isActive ? Colors.blue : Colors.grey),
+      title: Text(
+        title,
+        style: TextStyle(color: isActive ? Colors.blue : Colors.black),
       ),
+      onTap: () {
+        Navigator.pop(context); // Close drawer
+        if (!isActive) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => destination),
+          );
+        }
+      },
     );
   }
 }
