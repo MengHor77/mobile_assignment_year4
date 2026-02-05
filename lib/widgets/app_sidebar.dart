@@ -21,10 +21,12 @@ class AppSidebar extends StatelessWidget {
         // Changed from Column to ListView for the whole drawer
         padding: EdgeInsets.zero,
         children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text('Nita Vann'),
-            accountEmail: Text('account@example.com'),
-            currentAccountPicture: CircleAvatar(
+          UserAccountsDrawerHeader(
+            accountName: const Text('Nita Vann'),
+            accountEmail: const Text('account@example.com'),
+            // ADD THIS LINE TO CHANGE COLOR:
+            decoration: const BoxDecoration(color: Color.fromARGB(255, 45, 135, 208)),
+            currentAccountPicture: const CircleAvatar(
               backgroundImage: NetworkImage(
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmf4NlFls31qGMTqzjbaNgxmoNwClN9140-A&s',
               ),
