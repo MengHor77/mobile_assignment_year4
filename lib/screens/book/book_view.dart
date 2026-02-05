@@ -22,91 +22,21 @@ class BookView extends StatelessWidget {
         'image':
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmf4NlFls31qGMTqzjbaNgxmoNwClN9140-A&s',
       },
-        {
+      {
         'title': 'Dart Programming',
         'author': 'Nita Vann',
         'price': '\$15.00',
         'image':
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
       },
-        {
+      {
         'title': 'Dart Programming',
         'author': 'Nita Vann',
         'price': '\$15.00',
         'image':
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
       },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-        {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-      
+
       // Add more books as needed...
     ];
 
