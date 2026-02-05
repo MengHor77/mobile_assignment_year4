@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_year4/screens/login/login_view.dart'; 
+import 'package:provider/provider.dart';
+import 'package:mobile_year4/providers/book_provider.dart';
+import 'package:mobile_year4/screens/login/login_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => BookProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,9 +17,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LoginView(), 
+      home: LoginView(),
     );
   }
 }

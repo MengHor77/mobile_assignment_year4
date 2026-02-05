@@ -1,60 +1,78 @@
+import '../../widgets/book_card.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_year4/widgets/app_sidebar.dart';
-import 'package:mobile_year4/widgets/book_card.dart'; // Import the reusable part
+import 'package:provider/provider.dart';
+import '../../widgets/app_sidebar.dart';
+import '../../providers/book_provider.dart';
 
 class BookView extends StatelessWidget {
   const BookView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> books = [
-      {
-        'title': 'Flutter Development',
-        'author': 'Google Experts',
-        'price': 'FREE',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmf4NlFls31qGMTqzjbaNgxmoNwClN9140-A&s',
-      },
-      {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmf4NlFls31qGMTqzjbaNgxmoNwClN9140-A&s',
-      },
-      {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-      {
-        'title': 'Dart Programming',
-        'author': 'Nita Vann',
-        'price': '\$15.00',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-mXGvC6eS8jOa3-rWvD6v_J-r5G8v_9XwA&s',
-      },
-
-      // Add more books as needed...
-    ];
+    // Listens for changes in the BookProvider
+    final provider = context.watch<BookProvider>();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('All Books'),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
+        title: const Text("Book Store"),
+        // Builder allows the button to find the Scaffold and open the drawer
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu), // The "==" hamburger icon
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
       ),
       drawer: const AppSidebar(currentRoute: 'Books'),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(10),
-        itemCount: books.length,
-        itemBuilder: (context, index) {
-          // Calling the reusable component
-          return BookCard(book: books[index]);
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > 600) {
+            return GridView.builder(
+              padding: const EdgeInsets.all(16),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 2.2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+              ),
+              itemCount: provider.books.length,
+              itemBuilder: (ctx, index) => _buildCard(context, provider, index),
+            );
+          }
+          return ListView.builder(
+            padding: const EdgeInsets.all(12),
+            itemCount: provider.books.length,
+            itemBuilder: (ctx, index) => _buildCard(context, provider, index),
+          );
         },
       ),
+    );
+  }
+
+  Widget _buildCard(BuildContext context, BookProvider provider, int index) {
+    final book = provider.books[index];
+    return BookCard(
+      book: book,
+      buttonText: "Add to Cart",
+      buttonColor: Colors.green,
+      onAction: () {
+        // Adds the book to the global cart list
+        context.read<BookProvider>().addToCart(book);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("${book.title} added to Order List!"),
+            behavior: SnackBarBehavior.floating,
+            action: SnackBarAction(
+              label: "VIEW CART",
+              onPressed: () {
+                // Quick navigation to the order list from snackbar
+                Scaffold.of(context).openDrawer();
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

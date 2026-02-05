@@ -1,54 +1,47 @@
+import '../models/book_model.dart';
 import 'package:flutter/material.dart';
 
 class BookCard extends StatelessWidget {
-  final Map<String, String> book;
+  final Book book;
+  final VoidCallback onAction;
+  final String buttonText;
+  final Color buttonColor;
 
-  const BookCard({super.key, required this.book});
+  const BookCard({
+    super.key,
+    required this.book,
+    required this.onAction,
+    required this.buttonText,
+    required this.buttonColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 15),
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      elevation: 2,
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
-        contentPadding: const EdgeInsets.all(10),
+        contentPadding: const EdgeInsets.all(12),
         leading: ClipRRect(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(8),
           child: Image.network(
-            book['image']!,
-            width: 50,
-            height: 80,
+            book.imageUrl,
+            width: 60,
+            height: 90,
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) =>
-                const Icon(Icons.book, size: 50),
+            errorBuilder: (_, __, ___) => const Icon(Icons.book, size: 40),
           ),
         ),
-        title: Text(
-          book['title']!,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Author: ${book['author']}'),
-            const SizedBox(height: 5),
-            Text(
-              book['price']!,
-              style: const TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+        title: Text(book.title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text("${book.author}\n${book.price}"),
         trailing: ElevatedButton(
-          onPressed: () {},
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
+            backgroundColor: buttonColor,
             foregroundColor: Colors.white,
           ),
-          child: const Text('View'),
+          onPressed: onAction,
+          child: Text(buttonText),
         ),
       ),
     );
