@@ -1,7 +1,7 @@
 import '../../widgets/book_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/app_sidebar.dart';
+import '../../widgets/menu_sidebar.dart';
 import '../../providers/book_provider.dart';
 
 class BookView extends StatelessWidget {

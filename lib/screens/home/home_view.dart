@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_year4/widgets/app_sidebar.dart';
+import 'package:mobile_year4/widgets/menu_sidebar.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
