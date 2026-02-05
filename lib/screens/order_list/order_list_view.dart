@@ -13,6 +13,9 @@ class OrderListView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Order List"),
+        // Move colors here to apply to the whole bar
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Icon(Icons.menu),

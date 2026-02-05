@@ -15,6 +15,10 @@ class BookView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Book Store"),
+        // ADD THESE TWO LINES FOR THE BLUE BACKGROUND
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+
         // Builder allows the button to find the Scaffold and open the drawer
         leading: Builder(
           builder: (context) => IconButton(
