@@ -1,6 +1,6 @@
-import 'home_view.dart';
+import '../home/home_view.dart';
 import 'package:flutter/material.dart';
-import 'register_view.dart'; // Import the new register view
+import '../register/register_view.dart'; // Import the new register view
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
